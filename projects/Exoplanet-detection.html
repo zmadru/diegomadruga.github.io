@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Proyecto de ejemplo — Diego Madruga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="site-header"><div class="container"><h1 class="brand">Proyecto de ejemplo</h1><nav class="main-nav"><a href="../index.html">Inicio</a><a href="index.html">Proyectos</a></nav></div></header>
+  <main class="container">
+    <h2>Proyecto de ejemplo</h2>
+    <p>Este proyecto es una plantilla de ejemplo para tu portfolio. Incluye una breve descripción, tecnologías usadas y enlaces.</p>
+    <br><h3>Tecnologías</h3>
+    <ul>
+      <li>Python</li>
+      <li>PyTorch</li>
+      <li>Wavelet Transforms</li>
+    </ul>
+    <br>
+    <h3>Enlace</h3>
+    <p><a href="https://github.com/zmadru/ExoPlanet-Detection">https://github.com/zmadru/ExoPlanet-Detection</a></p>
+    
+    <section class="section">
+      <h3>Notebook: Exoplanet detection</h3>
+      <div id="notebook-container" class="card" style="min-height:200px;">Cargando notebook...</div>
+      <p class="muted" style="margin-top:.5rem">Nota: para que el notebook se cargue correctamente, sirve el sitio por HTTP (GitHub Pages o un servidor local). Si abres los archivos con `file://` la carga puede fallar.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container"><p>&copy; 2025 Diego Madruga</p></div></footer>
+  <!-- notebookjs: renderiza notebooks .ipynb en el navegador -->
+  <script src="https://unpkg.com/notebookjs@1.4.3/dist/notebook.min.js"></script>
+  <script>
+    (async function(){
+      const container = document.getElementById('notebook-container');
+      try{
+        const res = await fetch('../files/Shallue_compactoWL.ipynb');
+        if(!res.ok) throw new Error('HTTP ' + res.status + ' al cargar el notebook');
+        const nb = await res.json();
+        const NB = window.notebookjs && (window.notebookjs.Notebook || window.notebookjs.notebook || window.notebookjs);
+        if(!NB){
+          container.innerText = 'No se encontró la librería de visualización (notebookjs). Comprueba conexión a CDN.';
+          return;
+        }
+        // crear instancia y renderizar
+        const viewer = new NB(nb);
+        if(typeof viewer.render === 'function') viewer.render();
+        const el = viewer.el || viewer.element || viewer.node || viewer;
+        // limpiar y agregar
+        container.innerHTML = '';
+        if(el && el.nodeType) container.appendChild(el);
+        else container.appendChild(document.createTextNode('Notebook cargado (pero no se pudo renderizar automáticamente).'));
+      }catch(err){
+        container.innerHTML = '<pre style="color:#f88">' + String(err) + '</pre>';
+      }
+    })();
+  </script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
