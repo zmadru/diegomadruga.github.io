@@ -34,25 +34,56 @@
   <script>
     (async function(){
       const container = document.getElementById('notebook-container');
-      try{
-        const res = await fetch('../files/Shallue_compactoWL.ipynb');
-        if(!res.ok) throw new Error('HTTP ' + res.status + ' al cargar el notebook');
-        const nb = await res.json();
-        const NB = window.notebookjs && (window.notebookjs.Notebook || window.notebookjs.notebook || window.notebookjs);
-        if(!NB){
-          container.innerText = 'No se encontró la librería de visualización (notebookjs). Comprueba conexión a CDN.';
-          return;
+      const NB = window.notebookjs && (window.notebookjs.Notebook || window.notebookjs.notebook || window.notebookjs);
+      if(!NB){
+        container.innerText = 'No se encontró la librería de visualización (notebookjs). Comprueba conexión a CDN.';
+        return;
+      }
+
+      // Fuentes a probar: inline JSON (si existe), ruta relativa en el repo, y raw.githubusercontent como fallback
+      const rawUrl = 'https://raw.githubusercontent.com/zmadru/diegomadruga.github.io/main/files/Shallue_compactoWL.ipynb';
+      const sources = [
+        {type:'inline', elId:'notebook-json'},
+        {type:'relative', url:'../files/Shallue_compactoWL.ipynb'},
+        {type:'raw', url: rawUrl}
+      ];
+
+      let nb = null;
+      let lastErr = null;
+      for(const s of sources){
+        try{
+          if(s.type === 'inline'){
+            const el = document.getElementById(s.elId);
+            if(el && el.textContent.trim()){
+              nb = JSON.parse(el.textContent);
+              break;
+            }
+            continue;
+          }
+          const res = await fetch(s.url, {cache: 'no-cache'});
+          if(!res.ok) throw new Error('HTTP ' + res.status + ' al cargar ' + s.url);
+          nb = await res.json();
+          break;
+        }catch(e){
+          lastErr = e;
+          console.warn('No se pudo cargar notebook desde', s, e);
         }
-        // crear instancia y renderizar
+      }
+
+      if(!nb){
+        container.innerHTML = '<pre style="color:#f88">No se pudo cargar el notebook. Último error:\n' + String(lastErr) + '\n\nComprueba consola de red/errores y que `files/Shallue_compactoWL.ipynb` esté en la rama `main`.</pre>';
+        return;
+      }
+
+      try{
         const viewer = new NB(nb);
         if(typeof viewer.render === 'function') viewer.render();
         const el = viewer.el || viewer.element || viewer.node || viewer;
-        // limpiar y agregar
         container.innerHTML = '';
         if(el && el.nodeType) container.appendChild(el);
         else container.appendChild(document.createTextNode('Notebook cargado (pero no se pudo renderizar automáticamente).'));
       }catch(err){
-        container.innerHTML = '<pre style="color:#f88">' + String(err) + '</pre>';
+        container.innerHTML = '<pre style="color:#f88">Error al renderizar el notebook:\n' + String(err) + '</pre>';
       }
     })();
   </script>
