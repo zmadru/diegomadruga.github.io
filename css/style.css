@@ -37,7 +37,12 @@ body{
 .main-nav a{color:var(--muted);text-decoration:none;padding:0.45rem 0.6rem;border-radius:8px;position:relative;transition:all 180ms ease}
 .main-nav a::after{content:'';position:absolute;left:10%;right:10%;bottom:6px;height:2px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));opacity:0;transform:translateY(3px);transition:all 200ms ease}
 .main-nav a:hover{color:var(--text);transform:translateY(-2px)}
-.main-nav a:hover::after{opacity:1;transform:translateY(0)}
+/* No mostrar subrayado al hacer hover: sólo el enlace activo tendrá el subrayado */
+.main-nav a:hover::after{opacity:0;transform:translateY(3px)}
+
+/* Enlace activo: subrayado y en negrita */
+.main-nav a.active{font-weight:700;color:var(--text)}
+.main-nav a.active::after{opacity:1;transform:translateY(0);height:3px}
 
 .hero{display:grid;grid-template-columns:1fr 420px;gap:2rem;align-items:center;padding:3.5rem 0}
 .hero .intro{max-width:56ch}
