@@ -35,8 +35,26 @@
     (async function(){
       const container = document.getElementById('notebook-container');
       const NB = window.notebookjs && (window.notebookjs.Notebook || window.notebookjs.notebook || window.notebookjs);
+      // Si la librería notebookjs no está disponible (CDN bloqueado), intentamos un fallback
       if(!NB){
-        container.innerText = 'No se encontró la librería de visualización (notebookjs). Comprueba conexión a CDN.';
+        // Intentar mostrar el notebook mediante nbviewer (iframe) como fallback fiable en Pages
+        const nbviewerUrl = 'https://nbviewer.org/github/zmadru/diegomadruga.github.io/blob/main/files/Shallue_compactoWL.ipynb';
+        container.innerHTML = '';
+        const info = document.createElement('p');
+        info.className = 'muted';
+        info.textContent = 'La librería de visualización (notebookjs) no está disponible. Usando un visor externo (nbviewer) como alternativa.';
+        container.appendChild(info);
+        const iframe = document.createElement('iframe');
+        iframe.src = nbviewerUrl;
+        iframe.style.width = '100%';
+        iframe.style.height = '800px';
+        iframe.style.border = '0';
+        iframe.title = 'Notebook viewer (nbviewer)';
+        container.appendChild(iframe);
+        const link = document.createElement('p');
+        link.className = 'muted';
+        link.innerHTML = 'Si el visor no carga, abre el notebook directamente en <a href="' + nbviewerUrl + '" target="_blank">nbviewer</a>.';
+        container.appendChild(link);
         return;
       }
 
