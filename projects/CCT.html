@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CCT — Diego Madruga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- Highlight.js for syntax highlighting of Python code -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">CCT (Cycle-Change-Trend)</h1>
+      <nav class="main-nav">
+        <a href="../index.html">Inicio</a>
+        <a href="../about.html">Sobre mí</a>
+        <a href="index.html">Proyectos</a>
+        <a href="../contact.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Detector CCT — Detección de Ciclos, Cambios y Tendencias</h2>
+    <p>Proyecto de investigación que presenta un detector CCT (Cycle-Change-Trend) aplicado a series temporales raster de teledetección. El método combina análisis temporal, transformadas de Fourier y criterios heurísticos para clasificar píxeles según presencia de ciclos, cambios o tendencia.</p>
+
+    <p><strong>Descarga del TFM:</strong> <a href="../docs/TFM_DiegoMadruga.pdf" target="_blank" rel="noopener">Descargar TFM (PDF)</a></p>
+
+    <section class="section">
+      <h3>Resultado principal</h3>
+      <p class="muted">Imagen de resultado generada por el proceso CCT. Se muestra a continuación en tamaño grande; abre el PDF del TFM para más detalles.</p>
+      <div class="card" style="padding:0;background:transparent;">
+        <img src="../images/cct/resultado2.png" alt="Resultado CCT" style="width:100%;height:auto;border-radius:8px;box-shadow:var(--shadow-elevation-2);margin-top:0.5rem">
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>Código — CCTfft.py</h3>
+      <p class="muted">A continuación se muestra el código principal usado en el proyecto. También puedes <a href="../files/CCTfft.py" download>descargar el script</a>.</p>
+      <article class="card" style="padding:1rem;">
+        <pre style="overflow:auto;max-height:720px;border-radius:8px;background:var(--card-bg);padding:0"><code id="code-container" class="language-python" style="display:block;padding:1rem;white-space:pre;">Cargando código...</code></pre>
+      </article>
+    </section>
+
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>&copy; 2025 Diego Madruga</p></div></footer>
+
+  <script>
+    // Cargar y mostrar el código Python desde ../files/CCTfft.py y aplicar Highlight.js
+    (async function(){
+      const codeEl = document.getElementById('code-container');
+      try{
+        const res = await fetch('../files/CCTfft.py');
+        if(!res.ok) throw new Error('HTTP ' + res.status + ' al cargar el código');
+        const txt = await res.text();
+        // insertar texto sin HTML-parseo
+        codeEl.textContent = txt;
+        // inicializar highlight.js (si está disponible)
+        if(window.hljs && typeof hljs.highlightElement === 'function'){
+          hljs.highlightElement(codeEl);
+        }
+      }catch(e){
+        codeEl.textContent = 'No se pudo cargar el código: ' + e;
+      }
+    })();
+  </script>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
