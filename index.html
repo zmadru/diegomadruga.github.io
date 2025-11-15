@@ -11,7 +11,10 @@
 <body>
   <header class="site-header">
     <div class="container">
-      <h1 class="brand">Diego Madruga</h1>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="avatar"><img src="images/foto_perfil.jpg" alt="Foto de Diego"></div>
+        <h1 class="brand">Diego Madruga</h1>
+      </div>
       <nav class="main-nav">
         <a href="index.html">Inicio</a>
         <a href="about.html">Sobre mí</a>
@@ -23,9 +26,18 @@
 
   <main class="container">
     <section class="hero">
-      <h2>Diego Madruga Ramos</h2>
-      <p>Ingeniero informático <br>Master en Astrofísica y Técnicas de Observación</p>
-      <p><a class="btn" href="projects/index.html">Ver proyectos</a></p>
+      <div class="hero-card">
+        <div style="display:flex;gap:1rem;align-items:center">
+          <div style="width:120px;height:120px;border-radius:999px;overflow:hidden;border:3px solid rgba(255,255,255,0.06)">
+            <img src="images/foto_perfil.jpg" alt="Diego" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div class="intro">
+            <h2>Diego Madruga Ramos</h2>
+            <p>Ingeniero informático · Máster en Astrofísica y Técnicas de Observación</p>
+            <p><a class="btn btn-primary" href="projects/index.html">Ver proyectos</a></p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="projects-preview">
