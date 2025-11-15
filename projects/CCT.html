@@ -26,7 +26,16 @@
   <main class="container">
     <h2>Detector CCT — Detección de Ciclos, Cambios y Tendencias</h2>
     <p>Proyecto de investigación que presenta un detector CCT (Cycle-Change-Trend) aplicado a series temporales raster de teledetección. El método combina análisis temporal, transformadas de Fourier y criterios heurísticos para clasificar píxeles según presencia de ciclos, cambios o tendencia.</p>
-
+    <br>
+    <ul>
+      <li>Python</li>
+      <li>NumPy</li>
+      <li>MODIS</li>
+      <li>GDAL</li>
+      <li>Análisis de series temporales</li>
+      <li>Transformadas de Fourier</li>
+    </ul>
+    <br>
     <p><strong>Descarga del TFM:</strong> <a href="../docs/TFM_DiegoMadruga.pdf" target="_blank" rel="noopener">Descargar TFM (PDF)</a></p>
 
     <section class="section">
@@ -38,36 +47,15 @@
     </section>
 
     <section class="section">
-      <h3>Código — CCTfft.py</h3>
-      <p class="muted">A continuación se muestra el código principal usado en el proyecto. También puedes <a href="../files/CCTfft.py" download>descargar el script</a>.</p>
-      <article class="card" style="padding:1rem;">
-        <pre style="overflow:auto;max-height:720px;border-radius:8px;background:var(--card-bg);padding:0"><code id="code-container" class="language-python" style="display:block;padding:1rem;white-space:pre;">Cargando código...</code></pre>
-      </article>
+      <h3>Código</h3>
+      <p><a href="../files/cct.html" target="_blank" rel="noopener">Abrir versión HTML del script</a></p>
+      <div style="margin-top:0.5rem;">
+        <iframe src="../files/cct.html" title="Versión HTML del script CCTfft" style="width:100%;height:720px;border:1px solid rgba(0,0,0,0.06);border-radius:8px;" loading="lazy"></iframe>
+      </div>
     </section>
-
   </main>
 
   <footer class="site-footer"><div class="container"><p>&copy; 2025 Diego Madruga</p></div></footer>
-
-  <script>
-    // Cargar y mostrar el código Python desde ../files/CCTfft.py y aplicar Highlight.js
-    (async function(){
-      const codeEl = document.getElementById('code-container');
-      try{
-        const res = await fetch('../files/CCTfft.py');
-        if(!res.ok) throw new Error('HTTP ' + res.status + ' al cargar el código');
-        const txt = await res.text();
-        // insertar texto sin HTML-parseo
-        codeEl.textContent = txt;
-        // inicializar highlight.js (si está disponible)
-        if(window.hljs && typeof hljs.highlightElement === 'function'){
-          hljs.highlightElement(codeEl);
-        }
-      }catch(e){
-        codeEl.textContent = 'No se pudo cargar el código: ' + e;
-      }
-    })();
-  </script>
 
   <script src="../js/main.js"></script>
 </body>
