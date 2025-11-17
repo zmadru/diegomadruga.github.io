@@ -53,13 +53,16 @@ document.addEventListener('DOMContentLoaded',function(){
     console.warn('Error marcando nav activa', e);
   }
 
-  // Image slider (homepage)
+  // Image sliders: initialize all .image-slider instances on the page
   try{
-    const sliderEl = document.querySelector('.image-slider .slider');
-    if(sliderEl){
+    const sliderEls = Array.from(document.querySelectorAll('.image-slider .slider'));
+    sliderEls.forEach(sliderEl => {
       const slidesViewport = sliderEl.querySelector('.slides');
       const slidesContainer = sliderEl.querySelector('.track');
+      if(!slidesContainer) return;
       const slides = Array.from(slidesContainer.querySelectorAll('img'));
+      if(slides.length === 0) return;
+
       let index = 0;
       const total = slides.length;
       let animating = false;
@@ -67,6 +70,7 @@ document.addEventListener('DOMContentLoaded',function(){
         const offset = -index * 100;
         slidesContainer.style.transform = `translateX(${offset}%)`;
       };
+
       // Ensure images are flex children: set widths relative
       slides.forEach(img=> img.style.minWidth = '100%');
 
@@ -79,7 +83,7 @@ document.addEventListener('DOMContentLoaded',function(){
       if(btnNext) btnNext.addEventListener('click', ()=>{ next(); resetTimer(); });
       if(btnPrev) btnPrev.addEventListener('click', ()=>{ prev(); resetTimer(); });
 
-      // Autoplay
+      // Autoplay per slider
       let timer = setInterval(next, 4500);
       const resetTimer = ()=>{ clearInterval(timer); timer = setInterval(next, 4500); };
 
@@ -88,6 +92,6 @@ document.addEventListener('DOMContentLoaded',function(){
         slidesViewport.addEventListener('mouseenter', ()=> clearInterval(timer));
         slidesViewport.addEventListener('mouseleave', ()=> { clearInterval(timer); timer = setInterval(next,4500); });
       }
-    }
-  }catch(e){ console.warn('Error inicializando slider', e) }
+    });
+  }catch(e){ console.warn('Error inicializando sliders', e) }
 });
