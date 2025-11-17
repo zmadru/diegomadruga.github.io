@@ -14,14 +14,35 @@
       <h1 class="brand">Diego Madruga</h1>
       <nav class="main-nav">
         <a href="index.html">Inicio</a>
-        <a href="about.html">Sobre mí</a>
         <a href="projects/index.html">Proyectos</a>
+        <a href="about.html">Sobre mí</a>
         <a href="contact.html">Contacto</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
+    <section class="section image-slider-section" aria-hidden="false">
+      <div class="image-slider">
+        <div class="slider">
+          <button class="slider-btn prev" aria-label="Anterior">‹</button>
+          <div class="slides">
+            <div class="track">
+              <img src="images/images-slide/NGC891.png" alt="NGC891">
+              <img src="images/images-slide/acf.svg" alt="acf">
+              <img src="images/images-slide/M1_hubble.png" alt="M1 Hubble">
+              <img src="images/images-slide/serietiempo.png" alt="serie de tiempo">
+              <img src="images/images-slide/supernova.jpg" alt="Supernova">
+              <img src="images/images-slide/curvaluz.png" alt="Curva de luz">
+              <img src="images/images-slide/m16.jpg" alt="M16">
+              <img src="images/images-slide/blazar.jpg" alt="Blazar">
+              <img src="images/images-slide/jupiter.jpg" alt="Jupiter">
+            </div>
+          </div>
+          <button class="slider-btn next" aria-label="Siguiente">›</button>
+        </div>
+      </div>
+    </section>
     <section class="hero">
       <div class="hero-card">
         <div style="display:flex;gap:1rem;align-items:center">
@@ -40,20 +61,25 @@
     <section class="projects-preview">
       <h3>Proyectos destacados</h3>
       <br>
-      <div class="grid">
-        <article class="card">
-          <h4>Detección de exoplanetas</h4>
-          <p>Investigación en técnicas de aprendizaje profundo para identificar exoplanetas a partir de datos astronómicos.</p>
-          <p><a href="projects/Exoplanet-detection.html">Ver más</a></p>
-          <img src="images/exoplanet/transito.png" alt="Arquitectura del modelo" style="width:100%;border-radius:8px">
-        </article>
+    </section>
 
-        <article class="card">
-          <h4>Algoritmo de detección de dinámicas del suelo (CCT)</h4>
-          <p>Algoritmo basado en técnicas avanzadas para detectar cambios y dinámicas en la superficie terrestre utilizando datos satelitales.</p>
-          <p ><a href="projects/CCT.html">Ver más</a></p>
-          <img src="images/cct/resultado2.png" alt="Resultado CCT" style="width:50%;height:auto;border-radius:8px;box-shadow:var(--shadow-elevation-2);margin-top:0.5rem;justify-content:center;display:block;margin-left:auto;margin-right:auto;">
-        </article>
+    <section class="section">
+      <div class="grid">
+        <a class="card-link" href="projects/Exoplanet-detection.html">
+          <article class="card">
+            <h4>Detección de exoplanetas</h4>
+            <p>Investigación en técnicas de aprendizaje profundo para identificar exoplanetas a partir de datos astronómicos.</p>
+            <img src="images/exoplanet/transito.png" alt="Arquitectura del modelo" style="width:100%;border-radius:8px">
+          </article>
+        </a>
+
+        <a class="card-link" href="projects/CCT.html">
+          <article class="card">
+            <h4>Algoritmo de detección de dinámicas del suelo (CCT)</h4>
+            <p>Algoritmo basado en técnicas avanzadas para detectar cambios y dinámicas en la superficie terrestre utilizando datos satelitales.</p>
+            <img src="images/cct/resultado2.png" alt="Resultado CCT" style="width:50%;height:auto;border-radius:8px;box-shadow:var(--shadow-elevation-2);margin-top:0.5rem;justify-content:center;display:block;margin-left:auto;margin-right:auto;">
+          </article>
+        </a>
       </div>
     </section>
   </main>

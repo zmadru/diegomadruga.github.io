@@ -103,6 +103,32 @@ p {
 @media(max-width:980px){.hero{grid-template-columns:1fr;}.hero .hero-card{order:2}.site-header .container{flex-direction:row;gap:0.5rem}}
 @media(max-width:600px){.main-nav{display:flex;gap:0.4rem}.container{padding:0.75rem}}
 
+/* About layout: stacked card on top for full-width pages */
+.about-card-top aside.card { max-width:760px; margin:0 auto; }
+
+/* Nav toggle (hamburger) */
+.nav-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:var(--card-bg);border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+.nav-toggle:focus{outline:2px solid var(--accent-1)}
+.nav-toggle svg{width:20px;height:20px}
+
+@media (max-width:900px){
+  .nav-toggle{display:inline-flex}
+  .site-header .container{position:relative}
+  /* hide nav by default on small screens; show when .open */
+  .main-nav{display:none;position:absolute;right:1rem;top:64px;background:var(--card-bg);padding:0.75rem;border-radius:10px;flex-direction:column;gap:0.5rem;width:calc(100% - 2rem);box-shadow:0 10px 30px rgba(2,12,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+  .main-nav a{display:block;padding:0.65rem 0.85rem}
+  .main-nav.open{display:flex}
+  /* Make the mobile dropdown clearly visible over page content */
+  .main-nav{background-color: rgba(2,12,23,0.95);backdrop-filter: none}
+  .main-nav a{color:var(--text)}
+  .main-nav a + a{border-top:1px solid rgba(255,255,255,0.03)}
+}
+
+/* Center content inside the About aside card */
+.about-card{ text-align:center }
+.about-card ul{ display:inline-block; text-align:left; padding-left:1.25rem; margin:0 auto }
+.about-card p, .about-card h4, .about-card h3 { margin-left:0; margin-right:0 }
+
 /* Small animated entrance */
 @keyframes floatIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .card, .hero-card, .btn{animation:floatIn 450ms ease both}
@@ -110,6 +136,34 @@ p {
 /* Theme helper for links */
 a.link-underline{color:var(--accent-1);text-decoration:none;border-bottom:2px solid transparent;transition:all 180ms}
 a.link-underline:hover{border-bottom-color:var(--accent-2)}
+
+/* Make an entire card act as a clickable link */
+.card-link{display:block;color:inherit;text-decoration:none}
+.card-link:focus-visible{outline:3px solid rgba(124,92,255,0.24);outline-offset:4px;border-radius:12px}
+.card-link .card{height:100%}
+.card-link .card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 22px 46px rgba(2,12,23,0.65)}
+
+/* Visual affordance: badge to indicate the whole card is clickable */
+.card-link{position:relative;cursor:pointer}
+.card-link::after{content:'Abrir';position:absolute;top:12px;right:12px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#022227;padding:6px 8px;border-radius:8px;font-weight:700;font-size:0.8rem;opacity:0;transform:translateY(-6px);transition:all 180ms ease;pointer-events:none}
+.card-link:hover::after,.card-link:focus::after{opacity:1;transform:none}
+
+.image-slider{margin:0 -1.25rem 0}
+.image-slider .container{padding:0}
+/* Image slider styles */
+.slider{position:relative;display:flex;align-items:center;gap:0}
+.slides{overflow:hidden;width:100%;border-radius:12px}
+.track{display:flex;transform:translateX(0);transition:transform 520ms cubic-bezier(.22,.9,.3,1)}
+/* Increase slider height by ~25% and make buttons clearly visible */
+.track img{width:100%;height:275px;object-fit:contain;object-position:center center;display:block;flex-shrink:0;transition:transform 520ms ease;background:rgba(0,0,0,0.06)}
+.slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.75);color:var(--text);border:none;width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:60;box-shadow:0 8px 28px rgba(0,0,0,0.55)}
+.slider-btn.prev{left:12px}
+.slider-btn.next{right:12px}
+.slider-btn:hover{background:rgba(0,0,0,0.85)}
+
+@media(max-width:800px){
+  .track img{height:200px}
+}
 
 /* Contact sidebar (logos) - fixed on desktop, inline bottom on small screens */
 .contact-side{position:fixed;right:1rem;top:120px;display:flex;flex-direction:column;gap:0.5rem;z-index:60}
