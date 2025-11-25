@@ -1,0 +1,60 @@
+/* Fondo animado de estrellas y meteoros */
+body.stars-bg {
+  position: relative;
+  background-color: #0c0c1d; /* Fondo oscuro espacial */
+  overflow-x: hidden; /* Evita el desbordamiento horizontal */
+}
+
+/* Contenedor para las estrellas y meteoros */
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Detrás de todo el contenido */
+  overflow: hidden;
+  pointer-events: none; /* Evita que intercepte clics */
+}
+
+/* Estrellas titilantes */
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Meteoros */
+.meteor {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px white;
+  animation: fall linear infinite;
+}
+
+.meteor::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  /* Corrección final: posiciona la estela correctamente detrás del meteoro */
+  right: 1px;
+  transform: translateY(-50%);
+  width: 100px; /* Longitud de la estela */
+  height: 1px;
+  background: linear-gradient(to right, transparent, white);
+  transform-origin: right center;
+}
+
+@keyframes fall {
+  0% { transform: translate(-100vw, -100px) rotate(40deg); opacity: 1; }
+  100% { transform: translate(100vw, calc(100vh + 100px)) rotate(40deg); opacity: 0; }
+}
