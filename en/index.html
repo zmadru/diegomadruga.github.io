@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Portfolio — Diego Madruga</title>
+  <link rel="icon" type="image/png" href="../images/foto_perfil.jpeg">
+  <link rel="shortcut icon" href="../images/foto_perfil.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/stars.css">
+  <meta name="description" content="Programming and research portfolio of Diego Madruga.">
+</head>
+<body class="stars-bg">
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">Diego Madruga</h1>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="projects/index.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section image-slider-section" aria-hidden="false">
+      <div class="image-slider">
+        <div class="slider">
+          <button class="slider-btn prev" aria-label="Previous">‹</button>
+          <div class="slides">
+            <div class="track">
+              <img src="../images/images-slide/NGC891.png" alt="NGC891">
+              <img src="../images/images-slide/acf.svg" alt="Autocorrelation">
+              <img src="../images/images-slide/M1_hubble.png" alt="M1 Hubble">
+              <img src="../images/images-slide/serietiempo.png" alt="Time series">
+              <img src="../images/images-slide/supernova.jpg" alt="Supernova">
+              <img src="../images/images-slide/curvaluz.png" alt="Light curve">
+              <img src="../images/images-slide/m16.jpg" alt="M16">
+              <img src="../images/images-slide/blazar.jpg" alt="Blazar">
+              <img src="../images/images-slide/jupiter.jpg" alt="Jupiter">
+            </div>
+          </div>
+          <button class="slider-btn next" aria-label="Next">›</button>
+        </div>
+      </div>
+    </section>
+    <section class="hero">
+      <div class="hero-card">
+        <div style="display:flex;gap:1rem;align-items:center">
+          <div style="width:120px;height:120px;border-radius:999px;overflow:hidden;border:3px solid rgba(255,255,255,0.06)">
+            <img src="../images/foto_perfil.jpeg" alt="Diego" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div class="intro">
+            <h2>Diego Madruga Ramos</h2>
+            <p>Computer engineer · MSc in Astrophysics and Observational Techniques</p>
+            <p><a class="btn btn-primary" href="projects/index.html">View projects</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects-preview">
+      <h3>Featured projects</h3>
+      <br>
+    </section>
+
+    <section class="section">
+      <div class="grid featured-grid">
+        <a class="card-link" href="projects/GPR-Studio.html">
+          <article class="card">
+            <h4>GPR-Studio — GIS and Ground-Penetrating Radar</h4>
+            <p>Desktop application for large-scale ground-penetrating radar processing and geospatial visualization of pavements and linear infrastructure.</p>
+            <img src="../images/gpr-studio/editor_view.png" alt="GPR-Studio radargram" style="width:100%;border-radius:8px;margin-top:0.75rem">
+          </article>
+        </a>
+
+        <a class="card-link" href="projects/Movimiento-tierras.html">
+          <article class="card">
+            <h4>Multi-Agent Platform — Earthworks</h4>
+            <p>Language-model and clustering platform to query production data, segment machinery and review technical specifications in natural language.</p>
+            <img src="../images/earthworks/map_view.png" alt="Earthworks map" style="width:100%;border-radius:8px;margin-top:0.75rem">
+          </article>
+        </a>
+
+        <a class="card-link" href="projects/Gemelos-digitales-dovelas.html">
+          <article class="card">
+            <h4>Digital Twin and Optimization Engine for a Precast Plant</h4>
+            <p>Digital twin and CP-SAT optimizer for a segment and beam plant. It builds realistic Gantt charts under physical, staffing and supply constraints.</p>
+            <img src="../images/bridge_dovela/gantt_view.png" alt="Precast plant digital-twin schedule" style="width:100%;border-radius:8px;margin-top:0.75rem">
+          </article>
+        </a>
+
+        <a class="card-link" href="projects/Exoplanet-detection.html">
+          <article class="card">
+            <h4>Exoplanet detection</h4>
+            <p>Research on deep-learning techniques to identify exoplanets from astronomical data.</p>
+            <img src="../images/exoplanet/transito.png" alt="Exoplanet transit diagram" style="width:100%;border-radius:8px">
+          </article>
+        </a>
+
+        <a class="card-link" href="projects/CCT.html">
+          <article class="card">
+            <h4>Land-surface dynamics detector (CCT)</h4>
+            <p>Algorithm that detects change and dynamics on the Earth's surface from satellite data.</p>
+            <img src="../images/cct/resultado2.png" alt="CCT result" style="width:50%;height:auto;border-radius:8px;box-shadow:var(--shadow-elevation-2);margin-top:0.5rem;justify-content:center;display:block;margin-left:auto;margin-right:auto;">
+          </article>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Diego Madruga — <a href="contact.html">Contact</a></p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+  <script src="../js/stars.js"></script>
+</body>
+</html>

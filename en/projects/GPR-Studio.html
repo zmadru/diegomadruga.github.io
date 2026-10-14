@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GPR-Studio — Diego Madruga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/stars.css">
+  <link rel="icon" type="image/png" href="../../images/foto_perfil.jpeg">
+  <link rel="shortcut icon" href="../../images/foto_perfil.jpeg">
+  <meta name="description" content="Desktop application for large-scale ground-penetrating radar processing and GIS visualization of pavements and linear infrastructure.">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">GPR-Studio</h1>
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Projects</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>GPR-Studio — Advanced GIS and Ground-Penetrating Radar Software</h2>
+    <p class="muted">Lead developer · Software engineer and geographic information systems (GIS)</p>
+    <p>Designed and built from scratch as a professional desktop application for the analysis and bulk processing of ground-penetrating radar (GPR) data. It modernizes pavement and linear-infrastructure surveys — roads and Formula 1 circuits — by combining physical signal processing with interactive geospatial visualization.</p>
+
+    <section class="section">
+      <h3>Gallery</h3>
+      <div class="project-gallery">
+        <figure>
+          <a href="../../images/gpr-studio/editor_view.png" target="_blank" rel="noopener">
+            <img src="../../images/gpr-studio/editor_view.png" alt="Main interface with radargram and layer manager">
+          </a>
+          <figcaption>Main interface: radargram, layer manager and smart picking of the wearing, binder and base courses.</figcaption>
+        </figure>
+        <figure>
+          <a href="../../images/gpr-studio/map_view.png" target="_blank" rel="noopener">
+            <img src="../../images/gpr-studio/map_view.png" alt="Synchronized GIS viewer of the survey track">
+          </a>
+          <figcaption>Synchronized GIS viewer: survey track on the map, radargram and thickness profile of each layer.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>The challenge</h3>
+      <p>GPR surveys produce huge volumes of data: .rad files made of thousands of traces and samples. Traditional analysis forced each line to be processed on its own, in legacy software that was hard to use and disconnected from geography. The goal was a scalable, responsive tool that could inspect tens of kilometres at once and match subsurface dielectric anomalies with their GPS position in real time.</p>
+    </section>
+
+    <section class="section">
+      <h3>Solution architecture</h3>
+      <p>To keep the interface responsive with large data matrices, the engine is separated from the view and each layer has a single responsibility:</p>
+      <ul>
+        <li><strong>Processing engine.</strong> A Python backend that manages multi-line memory, applies mathematical filters with SciPy and NumPy, and stores the interpreted structural layers.</li>
+        <li><strong>Presentation and controllers (PyQt6).</strong> Independent controllers for the editor and the map react to engine state. Business logic stays out of the view.</li>
+        <li><strong>Bidirectional GIS bridge.</strong> An embedded web view injects dynamic HTML and JavaScript with Folium and Leaflet, and talks to the desktop application through web channels.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Innovations</h3>
+      <ul>
+        <li><strong>Batch multi-line processing.</strong> Several radar sections are loaded and drawn asynchronously, without freezing the interface.</li>
+        <li><strong>Bidirectional spatial sync.</strong> The radargram and the GIS map stay linked. Moving the cursor over a wave updates a map marker, and the reverse, so a subsurface anomaly can be placed on the alignment.</li>
+        <li><strong><em>Smart picking</em>.</strong> Automatic detection of dielectric interfaces from the wave centre or amplitude peaks, used to fill in asphalt-layer thickness.</li>
+        <li><strong>GIS-style layer manager.</strong> A visibility tree with an exclusive edit mode and a concurrent view mode. Technicians show, hide and reorder profiles of different physical layers.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Technology stack</h3>
+      <ul>
+        <li>Python 3.10+</li>
+        <li>PyQt6 (interface and event architecture)</li>
+        <li>NumPy and SciPy (time-zero, exponential gain and band-pass filters)</li>
+        <li>Folium / Leaflet (interactive maps and heat maps)</li>
+      </ul>
+      <p class="corp-note">Corporate development under confidentiality. The source code is not published.</p>
+    </section>
+
+    <section class="section">
+      <h3>Impact</h3>
+      <p>Layer processing and marking, previously done line by line, is now handled in one place. Dielectric-constant heat maps and critical-point detection support predictive maintenance of demanding infrastructure.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>&copy; 2025 Diego Madruga</p></div></footer>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

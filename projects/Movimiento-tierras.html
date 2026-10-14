@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Movimiento de tierras — Diego Madruga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/stars.css">
+  <link rel="icon" type="image/png" href="../images/foto_perfil.jpeg">
+  <link rel="shortcut icon" href="../images/foto_perfil.jpeg">
+  <meta name="description" content="Plataforma multi-agente y motor de clustering para el análisis operativo del movimiento de tierras.">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">Movimiento de tierras</h1>
+      <nav class="main-nav">
+        <a href="../index.html">Inicio</a>
+        <a href="index.html">Proyectos</a>
+        <a href="../about.html">Sobre mí</a>
+        <a href="../contact.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Plataforma Multi-Agente y Motor de Clustering para la Gestión de Movimiento de Tierras</h2>
+    <p class="muted">Desarrollador principal · Ingeniero de inteligencia artificial y sistemas agénticos</p>
+    <p>Diseño y desarrollo integral desde cero de una plataforma multi-agente impulsada por modelos de lenguaje y algoritmos de aprendizaje no supervisado para el análisis operativo y la toma de decisiones en movimiento de tierras y obra civil. El sistema sustituye el análisis fragmentado en hojas de cálculo y reportes estáticos por una interfaz conversacional capaz de consultar bases de datos de producción, segmentar el rendimiento de la maquinaria e inspeccionar pliegos técnicos.</p>
+
+    <section class="section">
+      <h3>Galería</h3>
+      <div class="project-gallery">
+        <figure>
+          <a href="../images/earthworks/map_view.png" target="_blank" rel="noopener">
+            <img src="../images/earthworks/map_view.png" alt="Panel con el mapa de trayectorias y filtros de la operación">
+          </a>
+          <figcaption>Panel de control: trayectorias de la maquinaria sobre la obra, con filtros por vehículo, operario y rango de fechas.</figcaption>
+        </figure>
+        <figure>
+          <a href="../images/earthworks/affinities_view.png" target="_blank" rel="noopener">
+            <img src="../images/earthworks/affinities_view.png" alt="Segmentación del rendimiento por vehículo y operario">
+          </a>
+          <figcaption>Segmentación de rendimiento: combustible, velocidad, actividad, emisiones y comparación entre operarios.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>El desafío</h3>
+      <p>Las obras de movimiento de tierras mueven grandes volúmenes bajo restricciones de maquinaria, combustible, distancia de transporte y plazo. La telemetría, los albaranes y los partes diarios quedan dispersos, y la supervisión se atasca en tres puntos:</p>
+      <ul>
+        <li><strong>Análisis en el momento.</strong> El balance de tierras y la productividad por ciclo exigen cruces que, hechos a mano, no llegan a tiempo.</li>
+        <li><strong>Patrones que no se ven en campo.</strong> Las ineficiencias de las rutas de acarreo y el desajuste entre carga y transporte piden un análisis de varias variables a la vez.</li>
+        <li><strong>Cifras fiables en una interfaz conversacional.</strong> Los jefes de obra necesitan preguntar en lenguaje natural sin que el sistema invente volúmenes, consumos o ratios de producción.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Arquitectura de la solución</h3>
+      <p>El sistema separa la comprensión del lenguaje, el cálculo y la documentación en cuatro capas:</p>
+      <ul>
+        <li><strong>Orquestador y enrutamiento contextual (ChatManager).</strong> Clasifica la intención de la consulta y la envía al agente de datos, al de documentación o al de clustering, manteniendo el hilo de la conversación.</li>
+        <li><strong>Motor de clustering operativo.</strong> Agrupa el histórico y la telemetría de los ciclos, separa la flota por perfiles de rendimiento, marca anomalías en los tiempos de ciclo y sitúa zonas con densidades de producción atípicas.</li>
+        <li><strong>Agente cuantitativo (DataAgent).</strong> Traduce la petición en llamadas a funciones. El cálculo corre en Python: volúmenes en banco y compactados, consumos y ratios de rendimiento (m³/h). El modelo de lenguaje no opera las cifras.</li>
+        <li><strong>Agente normativo (TextAgent).</strong> Recupera y resume pliegos, especificaciones y protocolos de seguridad, sin lanzar consultas de datos cuando la pregunta es documental.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Innovaciones</h3>
+      <ul>
+        <li><strong>Segmentación de patrones operativos.</strong> El agrupamiento sobre telemetría y partes diarios señala ineficiencias de flota, como esperas entre excavadora y camión o congestión en zonas de vertido, sin reglas escritas de antemano.</li>
+        <li><strong>Cálculo separado del lenguaje.</strong> El modelo extrae parámetros y esquemas. Las consultas a bases de datos y la aritmética las ejecutan herramientas deterministas.</li>
+        <li><strong>Enrutamiento de baja latencia.</strong> Las preguntas de concepto o de normativa no entran en el flujo de análisis pesado.</li>
+        <li><strong>Llamadas a herramientas y bloques de razonamiento.</strong> Los esquemas de las APIs de inferencia aíslan el razonamiento interno y dejan la ejecución analítica en las herramientas.</li>
+        <li><strong>Despliegue en servidor.</strong> La aplicación corre en Linux, en segundo plano, y puede servir varias demos a la vez dentro de la red corporativa.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Stack tecnológico</h3>
+      <ul>
+        <li>Python y PostgreSQL</li>
+        <li>LangChain, Pydantic y el SDK de OpenAI para Python</li>
+        <li>Scikit-learn, Pandas y NumPy</li>
+        <li>Streamlit y gráficos de métricas de obra</li>
+        <li>Git</li>
+      </ul>
+      <p class="corp-note">Desarrollo corporativo bajo confidencialidad. El código fuente y los datos de producción no se publican.</p>
+    </section>
+
+    <section class="section">
+      <h3>Impacto</h3>
+      <ul>
+        <li>El tiempo de análisis operativo diario y de cálculo de balances de tierras en la oficina técnica baja más de un 80&nbsp;%.</li>
+        <li>Los cuellos de botella de los circuitos de transporte aparecen al agrupar los ciclos por rendimiento.</li>
+        <li>Jefes de obra, topógrafos y responsables de maquinaria consultan los datos en lenguaje natural, con el cálculo hecho fuera del modelo de lenguaje.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>&copy; 2025 Diego Madruga</p></div></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

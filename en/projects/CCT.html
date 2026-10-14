@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CCT — Diego Madruga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/stars.css">
+  <link rel="icon" type="image/png" href="../../images/foto_perfil.jpeg">
+  <link rel="shortcut icon" href="../../images/foto_perfil.jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">CCT (Cycle-Change-Trend)</h1>
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Projects</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>CCT detector — cycles, change and trend</h2>
+    <p>Research project that applies a Cycle-Change-Trend (CCT) detector to remote-sensing raster time series. The method combines temporal analysis, Fourier transforms and heuristic rules to classify pixels as cyclic, changing or trending.</p>
+    <br>
+    <ul>
+      <li>Python</li>
+      <li>NumPy</li>
+      <li>MODIS</li>
+      <li>GDAL</li>
+      <li>Time-series analysis</li>
+      <li>Fourier transforms</li>
+    </ul>
+    <br>
+    <p><strong>Bachelor's thesis:</strong> <a href="../../docs/TFG_DiegoMadrugaRamos.pdf" target="_blank" rel="noopener">Download thesis (PDF)</a></p>
+
+    <section class="section">
+      <h3>Main result</h3>
+      <p class="muted">Result image produced by the CCT process. The thesis PDF has the full discussion.</p>
+      <div class="card" style="padding:0;background:transparent;">
+        <img src="../../images/cct/resultado2.png" alt="CCT result" style="width:100%;height:auto;border-radius:8px;box-shadow:var(--shadow-elevation-2);margin-top:0.5rem">
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>Code</h3>
+      <p><a href="../../files/cct.html" target="_blank" rel="noopener">Open the HTML version of the script</a></p>
+      <div style="margin-top:0.5rem;">
+        <iframe src="../../files/cct.html" title="HTML version of the CCTfft script" style="width:100%;height:720px;border:1px solid rgba(0,0,0,0.06);border-radius:8px;" loading="lazy"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>&copy; 2025 Diego Madruga</p></div></footer>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

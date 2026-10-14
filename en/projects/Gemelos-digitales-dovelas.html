@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Precast plant digital twin — Diego Madruga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/stars.css">
+  <link rel="icon" type="image/png" href="../../images/foto_perfil.jpeg">
+  <link rel="shortcut icon" href="../../images/foto_perfil.jpeg">
+  <meta name="description" content="Digital twin and CP-SAT engine for production planning in a precast concrete plant.">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">Digital twin</h1>
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Projects</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Digital Twin and Optimization Engine for a Precast Concrete Plant</h2>
+    <p class="muted">Lead developer · Optimization engineer (operations research)</p>
+    <p>Designed and built from scratch as a digital twin and mathematical optimization engine for an industrial precast concrete plant (bridge segments and beams). It replaces manual planning with a constraint-programming engine that produces realistic production Gantt charts, cutting operating cost while respecting physical, staffing and supply-chain constraints.</p>
+
+    <section class="section">
+      <h3>Gallery</h3>
+      <div class="project-gallery">
+        <figure>
+          <a href="../../images/bridge_dovela/gantt_view.png" target="_blank" rel="noopener">
+            <img src="../../images/bridge_dovela/gantt_view.png" alt="Control panel with KPIs and a production Gantt chart">
+          </a>
+          <figcaption>Control panel: planning KPIs, feasibility status and the Gantt chart produced by the optimizer.</figcaption>
+        </figure>
+        <figure>
+          <a href="../../images/bridge_dovela/stock_view.png" target="_blank" rel="noopener">
+            <img src="../../images/bridge_dovela/stock_view.png" alt="Cumulative production and rebar stock over the project">
+          </a>
+          <figcaption>Inventory simulation: daily and cumulative production, and rebar yard occupancy over the project.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>The challenge</h3>
+      <p>Planning a precast factory runs into hard bottlenecks: shared cranes, crew limits, strict working hours and curing times that cannot be shortened. The model had to find not only a valid production sequence, but a financially optimal one, and it had to stay computationally tractable instead of exploding like a typical job-shop scheduling problem.</p>
+    </section>
+
+    <section class="section">
+      <h3>Solution architecture</h3>
+      <p>Performance and scale come from a two-layer design:</p>
+      <ul>
+        <li><strong>Short-term optimization core (steady regime).</strong> A Google OR-Tools (CP-SAT) model that solves the production week. It handles physical constraints in minutes and hours and decides how resources and crews are used.</li>
+        <li><strong>Long-term inventory simulation (discrete simulation).</strong> Yard storage and rebar supply stay outside the solver, so the optimizer is not loaded with multi-month windows. A deterministic Python simulator, based on Little's law (<em>L = λW</em>) and FIFO queues, takes the optimizer output and projects physical occupancy over the life of the project.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Innovations</h3>
+      <ul>
+        <li><strong>Financial objective.</strong> Labour cost, including overtime, is part of the objective. The solver decides when starting early or extending a shift is cheaper than new infrastructure.</li>
+        <li><strong>Symmetry breaking.</strong> Constraints force production lines to fill in sequence, shrink the search space and reach stable solutions in milliseconds.</li>
+        <li><strong>Strict task contiguity.</strong> Equalities chain preparation, crane use and pouring. Crew idle gaps disappear and the Gantt stays dense and realistic at plant level.</li>
+        <li><strong>Dynamic resource queues.</strong> Cumulative variables for cranes and crews, without fixed time anchors, so concurrent work is spread smoothly.</li>
+        <li><strong>Management interface.</strong> Plant managers set maximum capacities and holding times, and review storage-overload alerts, without changing the optimizer rules.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Technology stack</h3>
+      <ul>
+        <li>Python 3.11</li>
+        <li>Google OR-Tools (CP-SAT solver)</li>
+        <li>Streamlit (Gantt, inventory occupancy and scenario setup)</li>
+        <li>Git</li>
+      </ul>
+      <p class="corp-note">Corporate development under confidentiality. The source code is not published.</p>
+    </section>
+
+    <section class="section">
+      <h3>Impact</h3>
+      <p>The tool removes guesswork from plant planning. It forecasts labour cost, sizes storage yards from long-term projections, and supports delivery dates with a model that is physically and mathematically checkable.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>&copy; 2025 Diego Madruga</p></div></footer>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
