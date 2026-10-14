@@ -45,6 +45,27 @@ body{
 .main-nav a.active{font-weight:700;color:var(--text)}
 .main-nav a.active::after{opacity:1;transform:translateY(0);height:3px}
 
+.lang-switch{
+  display:inline-flex;
+  align-items:center;
+  gap:0.15rem;
+  margin-left:0.25rem;
+  padding-left:0.55rem;
+  border-left:1px solid rgba(255,255,255,0.14);
+}
+.lang-switch a{
+  font-size:0.78rem;
+  font-weight:700;
+  letter-spacing:0.04em;
+  padding:0.28rem 0.42rem;
+}
+.lang-switch a::after{display:none}
+.lang-switch a[aria-current="true"]{
+  color:var(--text);
+  background:rgba(255,255,255,0.08);
+}
+html[lang="en"] .card-link::after{content:'Open'}
+
 .hero{display:grid;grid-template-columns:1fr 420px;gap:2rem;align-items:center;padding:3.5rem 0}
 .hero .intro{max-width:56ch}
 .hero h2{font-size:2.2rem;margin-bottom:0.5rem}
@@ -139,6 +160,13 @@ p {
   .main-nav{background-color: rgba(2,12,23,0.95);backdrop-filter: none}
   .main-nav a{color:var(--text)}
   .main-nav a + a{border-top:1px solid rgba(255,255,255,0.03)}
+  .lang-switch{
+    border-left:0;
+    margin-left:0;
+    padding:0.35rem 0.85rem 0.15rem;
+    border-top:1px solid rgba(255,255,255,0.08);
+  }
+  .lang-switch a + a{border-top:0}
 }
 
 /* Center content inside the About aside card */

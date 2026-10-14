@@ -1,4 +1,29 @@
 // Pequeñas interacciones para la plantilla
+
+// Site root is the folder that contains js/main.js, so language links stay
+// paired with the current page even when the site is not hosted at "/".
+function pageLanguage(){
+  const script = document.querySelector('script[src*="main.js"]');
+  const root = script ? new URL('../', script.src) : new URL('./', window.location.href);
+  const rootPath = root.pathname.endsWith('/') ? root.pathname : root.pathname + '/';
+  let path = decodeURIComponent(new URL(window.location.href).pathname);
+  if(path.startsWith(rootPath)) path = path.slice(rootPath.length);
+  else path = path.replace(/^\/+/, '');
+  if(path === '' || path.endsWith('/')) path += 'index.html';
+
+  const english = path === 'en' || path.startsWith('en/');
+  const normalizedSpanish = !english
+    ? path
+    : (path === 'en' || path === 'en/' ? 'index.html' : path.slice('en/'.length) || 'index.html');
+  const englishPath = 'en/' + normalizedSpanish;
+
+  return {
+    english: english,
+    spanishHref: new URL(normalizedSpanish, root).href,
+    englishHref: new URL(englishPath, root).href
+  };
+}
+
 document.addEventListener('DOMContentLoaded',function(){
   // Placeholder: aquí puedes añadir comportamiento (p. ej. menú móvil)
   console.log('Portfolio cargado');
@@ -10,7 +35,8 @@ document.addEventListener('DOMContentLoaded',function(){
       if(container.querySelector('.nav-toggle')) return; // ya existe
       const btn = document.createElement('button');
       btn.className = 'nav-toggle';
-      btn.setAttribute('aria-label','Abrir menú');
+      const menuLabel = pageLanguage().english ? 'Open menu' : 'Abrir menú';
+      btn.setAttribute('aria-label', menuLabel);
       btn.setAttribute('aria-expanded','false');
       btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       // Insertar antes del nav para que quede a la derecha en flex layout
@@ -27,9 +53,38 @@ document.addEventListener('DOMContentLoaded',function(){
     });
   }catch(e){console.warn('Error inicializando nav-toggle', e)}
 
+  // Language switch: pair each page with its twin under en/, relative to the site root
+  try{
+    const lang = pageLanguage();
+    document.querySelectorAll('.main-nav').forEach(nav => {
+      if(nav.querySelector('.lang-switch')) return;
+      const group = document.createElement('div');
+      group.className = 'lang-switch';
+      group.setAttribute('role', 'group');
+      group.setAttribute('aria-label', lang.english ? 'Language' : 'Idioma');
+
+      const spanishLink = document.createElement('a');
+      spanishLink.href = lang.spanishHref;
+      spanishLink.lang = 'es';
+      spanishLink.hreflang = 'es';
+      spanishLink.textContent = 'ES';
+      if(!lang.english) spanishLink.setAttribute('aria-current', 'true');
+
+      const englishLink = document.createElement('a');
+      englishLink.href = lang.englishHref;
+      englishLink.lang = 'en';
+      englishLink.hreflang = 'en';
+      englishLink.textContent = 'EN';
+      if(lang.english) englishLink.setAttribute('aria-current', 'true');
+
+      group.append(spanishLink, englishLink);
+      nav.appendChild(group);
+    });
+  }catch(e){console.warn('Error inicializando selector de idioma', e)}
+
   // Marcar el enlace de navegación activo según la ruta completa normalizada
   try{
-    const navLinks = Array.from(document.querySelectorAll('.main-nav a'));
+    const navLinks = Array.from(document.querySelectorAll('.main-nav > a'));
     const normalize = (pathname) => {
       // Reemplaza '/index.html' por '/' y elimina la barra final (salvo la raíz)
       let p = pathname.replace(/\/index\.html$/,'/');

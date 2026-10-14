@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Earthworks — Diego Madruga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/stars.css">
+  <link rel="icon" type="image/png" href="../../images/foto_perfil.jpeg">
+  <link rel="shortcut icon" href="../../images/foto_perfil.jpeg">
+  <meta name="description" content="Multi-agent platform and clustering engine for operational analysis of earthworks.">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">Earthworks</h1>
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <a href="index.html">Projects</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Multi-Agent Platform and Clustering Engine for Earthworks Management</h2>
+    <p class="muted">Lead developer · Artificial intelligence and agentic systems engineer</p>
+    <p>Designed and built from scratch as a multi-agent platform driven by language models and unsupervised learning for operational analysis and decision-making in earthworks and civil construction. It replaces fragmented spreadsheets and static reports with a conversational interface that queries production databases, segments machinery performance and inspects technical specifications.</p>
+
+    <section class="section">
+      <h3>Gallery</h3>
+      <div class="project-gallery">
+        <figure>
+          <a href="../../images/earthworks/map_view.png" target="_blank" rel="noopener">
+            <img src="../../images/earthworks/map_view.png" alt="Control panel with machinery tracks and operation filters">
+          </a>
+          <figcaption>Control panel: machinery tracks over the site, filtered by vehicle, operator and date range.</figcaption>
+        </figure>
+        <figure>
+          <a href="../../images/earthworks/affinities_view.png" target="_blank" rel="noopener">
+            <img src="../../images/earthworks/affinities_view.png" alt="Performance segmentation by vehicle and operator">
+          </a>
+          <figcaption>Performance segmentation: fuel, speed, activity, emissions and comparison across operators.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>The challenge</h3>
+      <p>Earthworks move large volumes under constraints of machinery, fuel, haul distance and schedule. Telemetry, delivery notes and daily reports stay scattered, and supervision stalls in three places:</p>
+      <ul>
+        <li><strong>Analysis when it is needed.</strong> Mass-haul balance and cycle productivity require joins that, done by hand, arrive too late.</li>
+        <li><strong>Patterns that stay invisible on site.</strong> Inefficient haul routes and mismatches between loading and transport need several variables at once.</li>
+        <li><strong>Reliable figures in a conversational interface.</strong> Site managers need to ask in natural language without the system inventing volumes, consumption or production ratios.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Solution architecture</h3>
+      <p>The system separates language understanding, calculation and documentation into four layers:</p>
+      <ul>
+        <li><strong>Orchestrator and contextual routing (ChatManager).</strong> Classifies the intent of a question and sends it to the data agent, the documentation agent or the clustering module, keeping the conversation thread.</li>
+        <li><strong>Operational clustering engine.</strong> Groups cycle history and telemetry, splits the fleet by performance profile, flags cycle-time anomalies and locates zones with unusual production density.</li>
+        <li><strong>Quantitative agent (DataAgent).</strong> Turns the request into function calls. The calculation runs in Python: bank and compacted volumes, consumption and performance ratios (m³/h). The language model does not compute the figures.</li>
+        <li><strong>Standards agent (TextAgent).</strong> Retrieves and summarizes specifications and safety protocols, and does not query production data when the question is documentary.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Innovations</h3>
+      <ul>
+        <li><strong>Operational pattern segmentation.</strong> Clustering over telemetry and daily reports highlights fleet inefficiencies, such as an excavator waiting for a truck or congestion at a dump zone, without rules written in advance.</li>
+        <li><strong>Calculation kept apart from language.</strong> The model extracts parameters and schemas. Database queries and arithmetic run in deterministic tools.</li>
+        <li><strong>Low-latency routing.</strong> Conceptual or regulatory questions never enter the heavy analysis path.</li>
+        <li><strong>Tool calls and reasoning blocks.</strong> Inference API schemas isolate internal reasoning and leave analytical execution in the tools.</li>
+        <li><strong>Server deployment.</strong> The application runs on Linux in the background and can serve several demos at once inside the corporate network.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Technology stack</h3>
+      <ul>
+        <li>Python and PostgreSQL</li>
+        <li>LangChain, Pydantic and the OpenAI SDK for Python</li>
+        <li>Scikit-learn, Pandas and NumPy</li>
+        <li>Streamlit and site-metric charts</li>
+        <li>Git</li>
+      </ul>
+      <p class="corp-note">Corporate development under confidentiality. Source code and production data are not published.</p>
+    </section>
+
+    <section class="section">
+      <h3>Impact</h3>
+      <ul>
+        <li>Daily operational analysis and earthworks balance calculations in the technical office take more than 80% less time.</li>
+        <li>Bottlenecks in haul circuits show up when cycles are grouped by performance.</li>
+        <li>Site managers, surveyors and plant supervisors query the data in natural language, with the calculation done outside the language model.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>&copy; 2025 Diego Madruga</p></div></footer>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
