@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GPR-Studio — Diego Madruga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/stars.css">
+  <link rel="icon" type="image/png" href="../images/foto_perfil.jpeg">
+  <link rel="shortcut icon" href="../images/foto_perfil.jpeg">
+  <meta name="description" content="Aplicación de escritorio para el procesamiento masivo de georradar y la visualización GIS de firmes e infraestructuras lineales.">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">GPR-Studio</h1>
+      <nav class="main-nav">
+        <a href="../index.html">Inicio</a>
+        <a href="index.html">Proyectos</a>
+        <a href="../about.html">Sobre mí</a>
+        <a href="../contact.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>GPR-Studio — Software Avanzado de Auscultación GIS y Georradar</h2>
+    <p class="muted">Desarrollador principal · Ingeniero de software y sistemas de información geográfica (GIS)</p>
+    <p>Diseño y desarrollo desde cero de una aplicación de escritorio profesional para el análisis y procesamiento masivo de datos de georradar (GPR). El sistema moderniza la auscultación de firmes e infraestructuras lineales (carreteras, pistas de Fórmula 1) uniendo el procesamiento avanzado de señales físicas con la visualización geoespacial interactiva en un entorno de alto rendimiento.</p>
+
+    <section class="section">
+      <h3>Galería</h3>
+      <div class="project-gallery">
+        <figure>
+          <a href="../images/gpr-studio/editor_view.png" target="_blank" rel="noopener">
+            <img src="../images/gpr-studio/editor_view.png" alt="Interfaz principal con radargrama y gestor de capas">
+          </a>
+          <figcaption>Interfaz principal: radargrama, gestor de capas y smart picking de rodadura, intermedia y base.</figcaption>
+        </figure>
+        <figure>
+          <a href="../images/gpr-studio/map_view.png" target="_blank" rel="noopener">
+            <img src="../images/gpr-studio/map_view.png" alt="Visor GIS sincronizado con la trayectoria de auscultación">
+          </a>
+          <figcaption>Visor GIS sincronizado: trayectoria sobre el mapa, radargrama y perfiles de espesor de cada capa.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>El desafío</h3>
+      <p>La auscultación de infraestructuras mediante georradar genera volúmenes masivos de datos: archivos .rad compuestos por miles de trazas y muestras. El análisis tradicional obligaba a procesar cada línea de forma aislada, con software heredado poco intuitivo y desconectado del contexto geográfico. El reto era construir una herramienta escalable y reactiva para analizar decenas de kilómetros de trazado a la vez, cruzando en tiempo real las anomalías dieléctricas del subsuelo con su posición GPS.</p>
+    </section>
+
+    <section class="section">
+      <h3>Arquitectura de la solución</h3>
+      <p>Para mantener fluida la interfaz con grandes matrices de datos, el sistema separa el motor de la vista y asigna una responsabilidad a cada capa:</p>
+      <ul>
+        <li><strong>Motor de procesamiento.</strong> Backend en Python que gestiona la memoria multilínea, aplica filtros matemáticos sobre las matrices de datos con SciPy y NumPy, y conserva el estado de las capas estructurales interpretadas.</li>
+        <li><strong>Capa de presentación y controladores (PyQt6).</strong> Controladores independientes para el editor y el mapa reaccionan a los cambios de estado del motor. La lógica de negocio no se mezcla con la vista.</li>
+        <li><strong>Puente bidireccional GIS.</strong> Un visor web embebido inyecta HTML y JavaScript dinámico con Folium y Leaflet, y se comunica con la aplicación de escritorio mediante canales web.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Innovaciones</h3>
+      <ul>
+        <li><strong>Procesamiento multilínea por lotes.</strong> Carga en memoria y renderizado asíncrono de varios tramos de radar a la vez, sin bloquear la interfaz.</li>
+        <li><strong>Sincronización espacial bidireccional.</strong> El radargrama y el mapa GIS están conectados. Mover el cursor sobre una onda actualiza un marcador en el mapa, y al revés, de modo que cualquier anomalía del subsuelo se localiza sobre el trazado.</li>
+        <li><strong>Algoritmos de <em>smart picking</em>.</strong> Detección automática de interfaces dieléctricas por el centro de onda o por los picos de amplitud, para completar el espesor de las capas asfálticas.</li>
+        <li><strong>Gestor de capas estilo GIS.</strong> Árbol de visibilidad con modo exclusivo para edición y modo concurrente para visualización. Los técnicos encienden, apagan y reordenan perfiles de distintas capas físicas.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Stack tecnológico</h3>
+      <ul>
+        <li>Python 3.10+</li>
+        <li>PyQt6 (interfaz y arquitectura de eventos)</li>
+        <li>NumPy y SciPy (Time-Zero, ganancia exponencial y filtros paso banda)</li>
+        <li>Folium / Leaflet (cartografía interactiva y mapas de calor)</li>
+      </ul>
+      <p class="corp-note">Desarrollo corporativo bajo confidencialidad. El código fuente no se publica.</p>
+    </section>
+
+    <section class="section">
+      <h3>Impacto</h3>
+      <p>El procesamiento y el marcado de capas, que antes se hacía línea por línea, pasa a gestionarse de forma centralizada. Los mapas de calor de constantes dieléctricas y la detección de puntos críticos aportan una base para el mantenimiento predictivo de infraestructuras de alta exigencia.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>&copy; 2025 Diego Madruga</p></div></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gemelo digital de prefabricados — Diego Madruga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/stars.css">
+  <link rel="icon" type="image/png" href="../images/foto_perfil.jpeg">
+  <link rel="shortcut icon" href="../images/foto_perfil.jpeg">
+  <meta name="description" content="Gemelo digital y motor CP-SAT para planificar la producción de una planta de prefabricados de hormigón.">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">Gemelo digital</h1>
+      <nav class="main-nav">
+        <a href="../index.html">Inicio</a>
+        <a href="index.html">Proyectos</a>
+        <a href="../about.html">Sobre mí</a>
+        <a href="../contact.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Gemelo Digital y Motor de Optimización para Planta de Prefabricados de Hormigón</h2>
+    <p class="muted">Desarrollador principal · Ingeniero de optimización (investigación operativa)</p>
+    <p>Diseño y desarrollo desde cero de un gemelo digital y un motor de optimización matemática para una planta industrial de prefabricados de hormigón (dovelas y vigas). El sistema sustituye la planificación manual por un motor de inteligencia artificial basado en programación con restricciones, capaz de generar diagramas de Gantt de producción realistas, minimizando los costes operativos y respetando restricciones físicas, de personal y de cadena de suministro.</p>
+
+    <section class="section">
+      <h3>Galería</h3>
+      <div class="project-gallery">
+        <figure>
+          <a href="../images/bridge_dovela/gantt_view.png" target="_blank" rel="noopener">
+            <img src="../images/bridge_dovela/gantt_view.png" alt="Panel de control con KPIs y diagrama de Gantt de producción">
+          </a>
+          <figcaption>Panel de control: KPIs de la planificación, estado de factibilidad y diagrama de Gantt generado por el optimizador.</figcaption>
+        </figure>
+        <figure>
+          <a href="../images/bridge_dovela/stock_view.png" target="_blank" rel="noopener">
+            <img src="../images/bridge_dovela/stock_view.png" alt="Producción acumulada y evolución del acopio de ferralla">
+          </a>
+          <figcaption>Simulación de inventario: producción diaria y acumulada, y ocupación del acopio de ferralla a lo largo del proyecto.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>El desafío</h3>
+      <p>La planificación de fábricas de prefabricados se enfrenta a cuellos de botella críticos: uso compartido de grúas, limitaciones de la plantilla, horarios laborales estrictos y tiempos de curado innegociables. El reto era construir un modelo que no solo encontrara una secuencia válida de producción, sino que fuera financieramente óptimo y computacionalmente eficiente, evitando la explosión combinatoria habitual en problemas de <em>job-shop scheduling</em>.</p>
+    </section>
+
+    <section class="section">
+      <h3>Arquitectura de la solución</h3>
+      <p>Para garantizar rendimiento y escalabilidad, el sistema se diseñó con una arquitectura desacoplada en dos capas:</p>
+      <ul>
+        <li><strong>Núcleo de optimización a corto plazo (régimen permanente).</strong> Un modelo matemático con Google OR-Tools (CP-SAT) que resuelve la semana de producción. El motor gestiona las restricciones físicas al detalle, en minutos y horas, y decide el uso de recursos y operarios.</li>
+        <li><strong>Simulación de inventario a largo plazo (simulación discreta).</strong> Para no cargar el optimizador con ventanas de varios meses, la gestión del acopio y la provisión de acero (ferralla) queda fuera del solver. Un simulador determinista en Python, basado en la ley de Little (<em>L = λW</em>) y colas FIFO, procesa la salida del optimizador y proyecta la ocupación física durante la vida del proyecto.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Innovaciones</h3>
+      <ul>
+        <li><strong>Función objetivo financiera.</strong> Los costes laborales, incluidas las horas extra, entran en la función objetivo. El solver decide cuándo resulta más barato adelantar o extender un turno que invertir en nueva infraestructura.</li>
+        <li><strong>Ruptura de simetría.</strong> Restricciones que fuerzan la saturación secuencial de las líneas de producción, reducen el espacio de búsqueda y permiten convergencias estables en milisegundos.</li>
+        <li><strong>Contigüidad estricta de tareas.</strong> Igualdades que encadenan preparación, uso de grúa y vertido. Así se eliminan los tiempos muertos de las cuadrillas y el Gantt queda denso y realista a nivel de planta.</li>
+        <li><strong>Colas dinámicas de recursos.</strong> Variables acumulativas para grúas y operarios, sin anclajes horarios fijos, de modo que la carga de trabajo concurrente se reparte de forma fluida.</li>
+        <li><strong>Interfaz de gestión.</strong> Panel de control en el que los jefes de planta parametrizan capacidades máximas y tiempos de retención, y revisan alertas de sobrecapacidad de almacenamiento sin cambiar las reglas del optimizador.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h3>Stack tecnológico</h3>
+      <ul>
+        <li>Python 3.11</li>
+        <li>Google OR-Tools (solver CP-SAT)</li>
+        <li>Streamlit (Gantt, ocupación de inventario y configuración de escenarios)</li>
+        <li>Git</li>
+      </ul>
+      <p class="corp-note">Desarrollo corporativo bajo confidencialidad. El código fuente no se publica.</p>
+    </section>
+
+    <section class="section">
+      <h3>Impacto</h3>
+      <p>La herramienta elimina las suposiciones en la planificación de la planta. Permite prever los costes laborales, dimensionar las campas de acopio con previsiones a largo plazo y sostener los plazos de entrega sobre un modelo físico y matemáticamente demostrable.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>&copy; 2025 Diego Madruga</p></div></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
